@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.footballtime.api.dao.CbdfcRepository">
+  <sql id="BasePeople_Column_List">
+    Id,Name,RealName,IsCard,IsEnable,Balance
+  </sql>
+  <select id="findPeopleById" parameterType="int" resultType="cn.footballtime.api.model.cbdfc.Cbdfc_People">
+    select 
+    <include refid="BasePeople_Column_List" />
+    from cbdfc_people where Id = #{id}
+  </select>  
+  <insert id="insertPeople" parameterType="cn.footballtime.api.model.cbdfc.Cbdfc_People">
+    INSERT INTO cbdfc_people(Id,Name,RealName,IsCard,IsEnable,Balance)
+    VALUES (#{id},#{name},#{realName},#{isCard},#{isEnable},#{balance})
+  </insert>
+  <update id="updatePeopleById" parameterType="cn.footballtime.api.model.cbdfc.Cbdfc_People">
+    UPDATE cbdfc_people SET Name=#{name},RealName=#{realName},IsCard=#{isCard},IsEnable=#{isEnable},Balance=#{balance}
+    WHERE Id = #{id}
+  </update>
+
+  <sql id="BaseIssue_Column_List">
+    Id,Name,RealName,IsCard,IsEnable,Balance
+  </sql>
+  <select id="findIssueById" parameterType="int" resultType="cn.footballtime.api.model.cbdfc.Cbdfc_Issue">
+    select
+    <include refid="BaseIssue_Column_List" />
+    from cbdfc_issue where Id = #{id}
+  </select>
+  <insert id="insertIssue" parameterType="cn.footballtime.api.model.cbdfc.Cbdfc_Issue">
+    INSERT INTO cbdfc_issue(Id,Sequence,Batch,OneExpense,NumberOfPeople,NumberOfCardPeople,ReceivedMoney,ActivityTime,Earn,OtherEarn,OtherEarnExplain,IsHaveData,Balance,Remark)
+    VALUES (#{id},#{sequence},#{batch},#{oneExpense},#{numberOfPeople},#{numberOfCardPeople},#{receivedMoney},#{activityTime},#{earn},#{otherEarn},#{otherEarnExplain},#{isHaveData},#{balance},#{remark})
+  </insert>
+  <insert id="insertActivityRecord" parameterType="cn.footballtime.api.model.cbdfc.Cbdfc_ActivityRecord">
+    INSERT INTO cbdfc_activityrecord(Id,IssueId,PeopleId,Expense)
+    VALUES (#{id},#{issueId},#{peopleId},#{expense})
+  </insert>
+  <insert id="insertRechargeRecord" parameterType="cn.footballtime.api.model.cbdfc.Cbdfc_RechargeRecord">
+    INSERT INTO cbdfc_rechargerecord(Id,PeopleId,Pay,Description,CreateDate)
+    VALUES (#{id},#{peopleId},#{pay},#{description},#{createDate})
+  </insert>
+</mapper>

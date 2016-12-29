@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.footballtime.api.dao.TeamRepository">
+  <resultMap id="BaseResultMap" type="cn.footballtime.api.model.Team">
+    <id column="TeamNo" property="teamNo" javaType="String" jdbcType="VARCHAR" />
+    <result column="Name" property="name" javaType="String" jdbcType="VARCHAR" />
+    <result column="FullName" property="fullName" javaType="String" jdbcType="VARCHAR" />
+    <result column="CompetitionId" property="competitionId" javaType="String" jdbcType="VARCHAR" />
+    <result column="IsClub" property="isClub" javaType="boolean" jdbcType="BOOLEAN" />
+    <result column="IsCurrentSeason" property="isCurrentSeason" javaType="int" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TeamNo,Name,FullName,CompetitionId,IsClub,IsCurrentSeason
+  </sql>
+  <select id="findByTeamNo" parameterType="String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from Team where TeamNo = #{teamNo}
+  </select>  
+  <insert id="insertTeam" parameterType="cn.footballtime.api.model.Team">
+    INSERT INTO Team(TeamNo,Name,FullName,CompetitionId)
+    VALUES (#{teamNo},#{name},#{fullName},#{competitionId})
+  </insert>
+  <update id="updateTeamByTeamNo" parameterType="cn.footballtime.api.model.Team">
+    UPDATE Team SET Name=#{name},FullName=#{fullName},CompetitionId=#{competitionId}
+    WHERE TeamNo=#{teamNo}
+  </update>
+</mapper>

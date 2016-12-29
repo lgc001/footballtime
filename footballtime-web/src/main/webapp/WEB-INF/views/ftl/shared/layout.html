@@ -1,0 +1,85 @@
+<#macro head title="football">
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${title} - 足球时光FootballTime.cn</title>
+    <link rel="stylesheet" href="${rc.contextPath}/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="${rc.contextPath}/css/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="${rc.contextPath}/css/main.css" />
+    <script src="${rc.contextPath}/js/jquery-1.12.1.min.js"></script>
+    <#nested/>
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        $(function ($) {
+            var showcontent = "";
+            $.get("${rc.contextPath}/login/getLoginShowName", function (data) {
+                if (data.isAuthenticated == 1) {
+                    showcontent = "<a href=\"account\index\">" + data.showName + "</a>&nbsp;&nbsp; <a href=\"/login/logout\">退出</a>";
+                    $("#userInfo").html(showcontent);
+                }
+                else {
+                    var url="?returnurl="+encodeURIComponent(window.location.href);
+                    showcontent = "<a href=\"/login/logon"+url+"\">登录</a>&nbsp;&nbsp; <a href=\"login\">注册</a>";
+                    $("#userInfo").html(showcontent);
+                }
+            });
+
+        });
+    </script>
+</head>
+</#macro>
+<#macro body>
+<@compress single_line=true><!--消除空白行,并将输出压缩为一行-->
+<body>
+    <div class="container">
+        <div class="masthead">
+            <div class="row">
+                <div class="col-lg-8 logo">
+                    <a href="${rc.contextPath}/"><img title="足球时光" alt="足球时光" src="${rc.contextPath}/images/logo.png"
+                                     height="60"></a>
+                </div>
+                <div class="col-lg-4 header-login">
+                    <p id="userInfo"><a href="/login/logon">登录</a>&nbsp;&nbsp; <a href="login/reg">注册</a></p>
+                </div>
+            </div>
+
+            <nav>
+                <ul class="nav nav-justified">
+                    <li><a href="${rc.contextPath}/">首页</a></li>
+                    <li><a href="${rc.contextPath}/star/index">球星TOP</a></li>
+                    <!--<li><a href="/goal/index">进球TOP</a></li>-->
+                    <li><a href="#">欧冠</a></li>
+                    <li><a href="${rc.contextPath}/league/A02">英超</a></li>
+                    <li><a href="${rc.contextPath}/league/A04">西甲</a></li>
+                    <li><a href="${rc.contextPath}/league/A03">意甲</a></li>
+                    <li><a href="${rc.contextPath}/league/A01">德甲</a></li>
+                    <!-- <li class="dropdown"><a aria-expanded="false"
+                        class="dropdown-toggle" href="/league/A03">赛事<span class="caret"></span></a>
+                        <ul class="dropdown-menu" style="margin-top: 0;">
+                            <li><a href="/league/A03">意甲</a></li>
+                            <li><a href="/league/A01">德甲</a></li>
+                            <li><a href="/league/A05">法甲</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </nav>
+        </div>
+
+        <#nested/>
+
+        <footer class="footer">
+            <p>&copy; 足球时光 FootballTime.cn 2016</p>
+        </footer>
+        <!-- cdn:src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js" -->
+        <script src="${rc.contextPath}/js/bootstrap/bootstrap.min.js"></script>
+    </div>
+</body>
+</@compress>
+</html>
+</#macro>

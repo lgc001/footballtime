@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.footballtime.api.dao.LeagueRepository">
+    <sql id="Base_Column_List">
+        LeagueNo, CompetitionId, Season, Round, BjTime, HomeTeamNo, GuestTeamNo, HalfScore, FullScore, HDrillmasterId, GDrillmasterId, UmpireId
+    </sql>
+    <select id="findByLeagueNo" parameterType="String" resultType="cn.footballtime.api.model.League">
+        select
+        <include refid="Base_Column_List" />
+        from League where LeagueNo = #{leagueNo}
+    </select>
+    <insert id="insertLeague" parameterType="cn.footballtime.api.model.League">
+        INSERT INTO League(LeagueNo, CompetitionId, Season, Round, BjTime, HomeTeamNo, GuestTeamNo, HalfScore, FullScore, HDrillmasterId, GDrillmasterId, UmpireId)
+        VALUES (#{leagueNo},#{competitionId},#{season},#{round},#{bjTime},#{homeTeamNo},#{guestTeamNo},#{halfScore},#{fullScore},#{hDrillmasterId},#{gDrillmasterId},#{umpireId})
+    </insert>
+    <update id="updateLeagueByLeagueNo" parameterType="cn.footballtime.api.model.League">
+        UPDATE League SET BjTime=#{bjTime},HalfScore=#{halfScore},FullScore=#{fullScore}
+        WHERE LeagueNo=#{leagueNo}
+    </update>
+</mapper>

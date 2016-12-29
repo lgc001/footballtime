@@ -1,13 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
-/.settings/
 /footballtime-api/logs/
 /footballtime-api/target/
-/footballtime-dto/target/
 /footballtime-web/target/
 /footballtime-web/logs/
-/footballtime-dto/.settings/
-/footballtime-web/.settings/
+/footballtime-dto/target/
 /footballtime-utils/target/
 /*.iml/
 /footballtime-web/footballtime-web.iml
