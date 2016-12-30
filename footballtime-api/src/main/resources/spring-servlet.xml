@@ -32,7 +32,7 @@
 	<context:component-scan base-package="cn.footballtime.api" />
 
 	<!-- 如果加了下边的静态资源配置则必须加这句，加这句才可以正确拦截jsp页面。支持mvc注解驱动 -->
-	<mvc:annotation-driven/>
+	<!--<mvc:annotation-driven/>-->
 	
 	<!--启动SpringMVC注解与Json消息转换器。避免IE执行AJAX时，返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter"

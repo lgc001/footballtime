@@ -3,13 +3,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"  
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
     xmlns:context="http://www.springframework.org/schema/context"  
-    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd    
                         http://www.springframework.org/schema/context    
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -18,10 +22,10 @@
   
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
-        <property name="driverClassName" value="${driver}" />  
-        <property name="url" value="${url}" />  
-        <property name="username" value="${username}" />  
-        <property name="password" value="${password}" />  
+        <property name="driverClassName" value="${my.driver}" />
+        <property name="url" value="${my.url}" />
+        <property name="username" value="${my.username}" />
+        <property name="password" value="${my.password}" />
         <!-- 初始化连接大小 -->  
         <property name="initialSize" value="${initialSize}"></property>  
         <!-- 连接池最大数量 -->  
@@ -47,10 +51,12 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
     </bean>  
   
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
-    <bean id="transactionManager"  
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-        <property name="dataSource" ref="dataSource" />  
-    </bean>  
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="txManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- enable transaction annotation support -->
+    <tx:annotation-driven transaction-manager="txManager" />
   
 </beans>
