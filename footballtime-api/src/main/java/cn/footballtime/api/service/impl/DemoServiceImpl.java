@@ -26,14 +26,14 @@ public class DemoServiceImpl implements DemoService {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String currentDate = df.format(new Date());// new Date()为获取当前系统时间
 
-//        DataSourceTypeManager.set(EnumDataSource.MyConn);
+        DataSourceTypeManager.set(EnumDataSource.MyConn);
         demoRepository.insertMydataTest1(currentDate);
 
         int a=5;
         int b=0;
         int c=a/b;
 
-//        DataSourceTypeManager.set(EnumDataSource.MyConn);
+        DataSourceTypeManager.set(EnumDataSource.MyConn);
         demoRepository.insertMydataTest2(currentDate);
 
         //事务回滚
