@@ -25,4 +25,7 @@
     UPDATE Team SET Name=#{name},FullName=#{fullName},CompetitionId=#{competitionId}
     WHERE TeamNo=#{teamNo}
   </update>
+  <select id="getTeamListOfCurrentSeason" parameterType="String" resultMap="BaseResultMap">
+    select TeamNo,Name,FullName from Team where CompetitionId=#{competitionId} and IsCurrentSeason = 1
+  </select>
 </mapper>

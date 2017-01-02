@@ -9,5 +9,5 @@ public interface TeamService {
     boolean insert(Team team);
     boolean updateTeamByTeamNo(Team team);
 
-    List<Team> getTeamListOfCurrentSeason(String competitionNo);
+    List<Team> getTeamListOfCurrentSeason(String competitionId);
 }

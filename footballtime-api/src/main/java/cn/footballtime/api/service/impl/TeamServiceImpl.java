@@ -32,8 +32,8 @@ public class TeamServiceImpl implements TeamService {
         return true;
     }
 
-    public List<Team> getTeamListOfCurrentSeason(String competitionNo)
+    public List<Team> getTeamListOfCurrentSeason(String competitionId)
     {
-        return null;
+        return teamRepository.getTeamListOfCurrentSeason(competitionId);
     }
 }

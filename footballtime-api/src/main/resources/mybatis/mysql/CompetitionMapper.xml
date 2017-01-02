@@ -10,12 +10,12 @@
     <result column="IsLeague" property="isLeague" jdbcType="BOOLEAN" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id,CompetitionNo,Name,Country,FullName,IsLeague
+    Id,CompetitionNo,Name,Country,FullName,IsLeague,CurrentSeason
   </sql>
-  <select id="getByCompetitionNo" resultMap="BaseResultMap">
+  <select id="getByCompetitionId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from Competition where CompetitionNo=#{competitionNo}
+    from Competition where Id=#{id}
   </select>
   <select id="getList" resultMap="BaseResultMap">
     select

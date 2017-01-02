@@ -40,11 +40,11 @@
     <div class="container">
         <div class="masthead">
             <div class="row">
-                <div class="col-lg-8 logo">
+                <div class="col-md-8 logo">
                     <a href="${rc.contextPath}/"><img title="足球时光" alt="足球时光" src="${rc.contextPath}/images/logo.png"
                                      height="60"></a>
                 </div>
-                <div class="col-lg-4 header-login">
+                <div class="col-md-4 header-login">
                     <p id="userInfo"><a href="/login/logon">登录</a>&nbsp;&nbsp; <a href="login/reg">注册</a></p>
                 </div>
             </div>
@@ -52,9 +52,9 @@
             <nav>
                 <ul class="nav nav-justified">
                     <li><a href="${rc.contextPath}/">首页</a></li>
-                    <li><a href="${rc.contextPath}/star/index">球星TOP</a></li>
-                    <!--<li><a href="/goal/index">进球TOP</a></li>-->
-                    <li><a href="#">欧冠</a></li>
+                    <!--<li><a href="${rc.contextPath}/star/index">球星TOP</a></li>-->
+                    <!--&lt;!&ndash;<li><a href="/goal/index">进球TOP</a></li>&ndash;&gt;-->
+                    <!--<li><a href="#">欧冠</a></li>-->
                     <li><a href="${rc.contextPath}/league/A02">英超</a></li>
                     <li><a href="${rc.contextPath}/league/A04">西甲</a></li>
                     <li><a href="${rc.contextPath}/league/A03">意甲</a></li>
@@ -74,9 +74,8 @@
         <#nested/>
 
         <footer class="footer">
-            <p>&copy; 足球时光 FootballTime.cn 2016</p>
+            <p><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备15002022号-3</a> | &copy; 足球时光 FootballTime.cn 2016</p>
         </footer>
-        <!-- cdn:src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js" -->
         <script src="${rc.contextPath}/js/bootstrap/bootstrap.min.js"></script>
     </div>
 </body>

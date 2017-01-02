@@ -16,9 +16,9 @@ public class CompetitionServiceImpl implements CompetitionService {
     @Resource
     private CompetitionRepository competitionRepository;
 
-    public Competition getByCompetitionNo(String competitionNo)
+    public Competition getByCompetitionId(String id)
     {
-        return competitionRepository.getByCompetitionNo(competitionNo);
+        return competitionRepository.getByCompetitionId(id);
     }
 
     public List<Competition> getList()

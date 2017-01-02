@@ -3,6 +3,7 @@ package cn.footballtime.api.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.footballtime.api.common.FootballCommon;
 import cn.footballtime.api.model.Team;
 import cn.footballtime.api.service.TeamService;
 import cn.footballtime.dto.TeamDto;
@@ -23,7 +24,8 @@ public class TeamController {
 	@ResponseBody
 	public ResponseDto getTeamListOfCurrentSeason(String competitionNo)
 	{
-		List<Team> teams = _teamService.getTeamListOfCurrentSeason(competitionNo);
+		String competitionId = FootballCommon.getCompetitionId(competitionNo);
+		List<Team> teams = _teamService.getTeamListOfCurrentSeason(competitionId);
 
 		List<TeamDto> teamDtos=new ArrayList<TeamDto>();
 		for (Team team:teams) {

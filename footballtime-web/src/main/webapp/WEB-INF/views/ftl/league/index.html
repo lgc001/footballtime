@@ -8,15 +8,17 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-md-8">
         <h3>球队</h3>
         <div>
             <#list teamList as team><br>
-                <li>${team.name} - ${team.fullName} <br>
+                <li>${team.fullName} <br>
             </#list>
         </div>
-        <h3>最新赛果</h3>
-        <table class="table">
+        <div>
+            <div class="col-md-12 section-header"><h4>最新赛果</h4></div>
+        </div>
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>时间</th>
@@ -88,22 +90,24 @@
             </tr>
             </tbody>
         </table>
-        <h3>最近比赛</h3>
-        <table class="table">
+        <div>
+            <div class="col-md-12 section-header"><h4>最近比赛</h4></div>
+        </div>
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>时间</th>
                 <th>主队</th>
-                <th></th>
                 <th>客队</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>-</td>
+                <td>2016-04-18 22:30（周六）</td>
+                <td><a href="http://www.footballtime.cn" target="_blank">切尔西</a></td>
                 <td>曼联</td>
+                <td>最近交锋</td>
             </tr>
             <tr>
                 <td>2016-04-18 22:30</td>
@@ -162,8 +166,10 @@
             </tbody>
         </table>
     </div>
-    <div class="col-lg-4">
-        <h3>积分榜</h3>
+    <div class="col-md-4">
+        <div>
+            <div class="col-md-12 section-header margin15"><h4>积分榜</h4></div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -212,7 +218,9 @@
             </tr>
             </tbody>
         </table>
-        <h3>射手榜</h3>
+        <div>
+            <div class="col-md-12 section-header"><h4>射手榜</h4></div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>

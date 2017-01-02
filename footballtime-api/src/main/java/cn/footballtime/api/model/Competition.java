@@ -54,6 +54,14 @@ public class Competition {
         this.isLeague = isLeague;
     }
 
+    public String getCurrentSeason() {
+        return CurrentSeason;
+    }
+
+    public void setCurrentSeason(String currentSeason) {
+        CurrentSeason = currentSeason;
+    }
+
     private int id;
     private String competitionNo;
     @SerializedName("competitionName")//别名
@@ -61,4 +69,5 @@ public class Competition {
     private String country;
     private String fullName;
     private boolean isLeague;
+    private String CurrentSeason;
 }

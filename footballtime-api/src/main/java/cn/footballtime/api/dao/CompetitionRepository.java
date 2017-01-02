@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Repository
 public interface CompetitionRepository {
-    Competition getByCompetitionNo(String competitionNo);
+    Competition getByCompetitionId(String id);
     List<Competition> getList();
     List<Competition> getList1();
 }
