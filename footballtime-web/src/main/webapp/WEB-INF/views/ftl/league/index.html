@@ -8,6 +8,16 @@
 </div>
 
 <div class="row">
+    <div id="team-list" class="col-md-12">
+        <#list teamList as team>
+        <a href="/team/index?id=${team.teamNo}" target="_blank">
+            <img title="${team.fullName}" src="/images/temp/130.png" height="50" width="50">
+            <div title="${team.fullName}"><span><nobr>${team.fullName}</nobr></span></div>
+        </a>
+        </#list>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-8">
         <h3>球队</h3>
         <div>
