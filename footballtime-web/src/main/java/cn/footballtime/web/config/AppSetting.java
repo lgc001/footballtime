@@ -15,7 +15,8 @@ public class AppSetting {
             cookieName = util.readValue("cookieName");
             cookieAesEncryptKey = util.readValue("cookieAesEncryptKey");
             siteDomainUrl = util.readValue("siteDomainUrl");
-             dataApiUrl = util.readValue("footballApiUrl");
+            dataApiUrl = util.readValue("footballApiUrl");
+            uploadPicPath = util.readValue("uploadPicPath");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -60,5 +61,15 @@ public class AppSetting {
      */
     public static String getDataApiUrl() {
         return  dataApiUrl;
+    }
+
+    private static String uploadPicPath;
+
+    /**
+     *
+     * @return图片上传路径
+     */
+    public static String getUploadPicPath() {
+        return  uploadPicPath;
     }
 }
