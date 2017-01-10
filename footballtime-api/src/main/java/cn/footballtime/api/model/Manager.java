@@ -1,4 +1,4 @@
-package cn.footballtime.dto;
+package cn.footballtime.api.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ManagerDto {
+public class Manager {
     private String userName;
     private String Password;
     private String SaltFigure;

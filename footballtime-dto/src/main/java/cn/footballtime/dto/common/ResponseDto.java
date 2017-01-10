@@ -3,6 +3,7 @@ package cn.footballtime.dto.common;
 public class ResponseDto<T> {
 	public ResponseDto()
 	{
+		code = "0";
 		msg = "";
 	}
 	
