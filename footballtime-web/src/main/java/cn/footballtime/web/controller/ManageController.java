@@ -2,11 +2,13 @@ package cn.footballtime.web.controller;
 
 import cn.footballtime.utils.SecurityUtil;
 import cn.footballtime.web.config.AppSetting;
+import cn.footballtime.web.service.ManageService;
 import cn.footballtime.web.util.CommonUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,45 +32,38 @@ import java.util.List;
 @Controller
 @RequestMapping("/manage")
 public class ManageController {
+    @Autowired
+    private ManageService _manageService;
+
     @RequestMapping(value = "/login")
     public String login() {
         return "manage/login";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String userName=request.getParameter("userName");
-        String password=request.getParameter("password");
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
 
-        boolean isLoginSuccess = true;
-        if(isLoginSuccess)
-        {
+        boolean isLoginSuccess = _manageService.login(userName,password);
+        if (isLoginSuccess) {
             //使用request对象的getSession()获取session，如果session不存在则创建一个
             HttpSession session = request.getSession();
             //将数据存储到session中
             session.setAttribute("uid", userName);
 
             response.sendRedirect("index");
-        }
-        else
-        {
+        } else {
             response.sendRedirect("login");
         }
     }
 
     @RequestMapping("/index")
-    public String index(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception
-    {
-        String userName="";
-        HttpSession session = request.getSession();
-        if(session.getAttribute("uid")==null)
-        {
+    public String index(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+        String userName = manageLogin(request);
+        if (userName.length() == 0) {
             response.sendRedirect("login");
-        }
-        else
-        {
-            userName=session.getAttribute("uid").toString();
         }
 
         model.addAttribute("userName", userName);
@@ -76,25 +71,18 @@ public class ManageController {
         return "manage/index";
     }
 
-    @RequestMapping(value = "/uploadTeamLogo",method = RequestMethod.POST)
-    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception
-    {
-        String userName="";
-        HttpSession session = request.getSession();
-        if(session.getAttribute("uid")==null)
-        {
+    @RequestMapping(value = "/uploadTeamLogo", method = RequestMethod.POST)
+    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+        String userName = manageLogin(request);
+        if (userName.length() == 0) {
             response.sendRedirect("login");
-        }
-        else
-        {
-            userName=session.getAttribute("uid").toString();
         }
 
         //上传目录
-        Date currentTime=new Date();
+        Date currentTime = new Date();
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMM");
         String folderName = formatDate.format(currentTime);
-        String path = AppSetting.getUploadPicPath() + "/"+folderName+"/";//request.getServletContext().getRealPath("/")+"upload/images/"+folderName+"/";
+        String path = AppSetting.getUploadPicPath() + "/" + folderName + "/";//request.getServletContext().getRealPath("/")+"upload/images/"+folderName+"/";
         File savePath = new File(path);
         if (!savePath.exists()) { // 文件夹
             savePath.mkdir();
@@ -108,9 +96,8 @@ public class ManageController {
         String originalFilename = file.getOriginalFilename();
         String extendName = originalFilename.substring(originalFilename.lastIndexOf("."));
         String picNo = CommonUtil.getPicNoByPicExtendName(extendName);
-        if(picNo.length()==0)
-        {
-            throw new Exception("只接受jpg,gif,png这三种类型图");
+        if (picNo.length() == 0) {
+            throw new Exception("只接受jpg,png,gif这三种类型图");
         }
         String timeFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(currentTime);
         String newFilename = timeFileName + picNo + extendName;
@@ -122,16 +109,30 @@ public class ManageController {
         return "manage/login";
     }
 
-    public void SaveFileFromInputStream(InputStream stream,String path,String filename) throws IOException
-    {
-        FileOutputStream fs=new FileOutputStream( path + "/"+ filename);
-        byte[] buffer =new byte[1024*1024];
+    /**
+     * session登录验证
+     *
+     * @param request
+     * @return
+     */
+    private String manageLogin(HttpServletRequest request) {
+        String userName = "";
+        HttpSession session = request.getSession();
+        if (session.getAttribute("uid") != null) {
+            userName = session.getAttribute("uid").toString();
+        }
+
+        return userName;
+    }
+
+    public void SaveFileFromInputStream(InputStream stream, String path, String filename) throws IOException {
+        FileOutputStream fs = new FileOutputStream(path + "/" + filename);
+        byte[] buffer = new byte[1024 * 1024];
         int bytesum = 0;
         int byteread = 0;
-        while ((byteread=stream.read(buffer))!=-1)
-        {
-            bytesum+=byteread;
-            fs.write(buffer,0,byteread);
+        while ((byteread = stream.read(buffer)) != -1) {
+            bytesum += byteread;
+            fs.write(buffer, 0, byteread);
             fs.flush();
         }
         fs.close();

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by Administrator on 2016/9/12.
  */
 @Controller
+@RequestMapping("/league")
 public class LeagueController {
     @Autowired
     private LeagueService _leagueService;
