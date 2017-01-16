@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CompetitionDto {
-    private int id;
+    private String id;
     private String competitionNo;
     private String name;
     private String country;

@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by Administrator on 2016/9/12.
  */
 public class Competition {
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,7 +62,7 @@ public class Competition {
         CurrentSeason = currentSeason;
     }
 
-    private int id;
+    private String id;
     private String competitionNo;
     @SerializedName("competitionName")//别名
     private String name;

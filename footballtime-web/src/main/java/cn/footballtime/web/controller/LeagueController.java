@@ -1,9 +1,11 @@
 package cn.footballtime.web.controller;
 
 import cn.footballtime.dto.CompetitionDto;
+import cn.footballtime.dto.LeagueDto;
 import cn.footballtime.dto.LeagueTableDto;
 import cn.footballtime.dto.TeamDto;
 import cn.footballtime.web.service.CompetitionService;
+import cn.footballtime.web.service.LeagueService;
 import cn.footballtime.web.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ public class LeagueController {
     private CompetitionService competitionService;
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private LeagueService leagueService;
 
     @RequestMapping(value="/{competitionNo:[aA]{1}\\d{2}}")//参数配这种形式时，参数前需要加@PathVariable
     public String index(@PathVariable String competitionNo, Model model) {
@@ -34,6 +38,12 @@ public class LeagueController {
 
         List<TeamDto> teamList = teamService.GetTeamListOfCurrentSeason(competitionNo);
         model.addAttribute("teamList", teamList);
+
+        List<LeagueDto> overLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),true,1,10);
+        model.addAttribute("overLeagueList", overLeagueList);
+
+        List<LeagueDto> futureLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),false,1,10);
+        model.addAttribute("futureLeagueList", futureLeagueList);
 
         return "league/index";
     }

@@ -1,11 +1,14 @@
 package cn.footballtime.api.controller;
 
+import cn.footballtime.api.model.League;
 import cn.footballtime.api.service.LeagueService;
 import cn.footballtime.dto.common.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/12.
@@ -27,7 +30,14 @@ public class LeagueController {
     @RequestMapping("/getLeagueListByCompetitionId")
     @ResponseBody
     public ResponseDto getLeagueListByCompetitionId(String competitionId,boolean isOver,int pageIndex,int pageSize) {
-        return null;
+
+        List<League> list = _leagueService.getLeagueListByCompetitionId(competitionId,isOver,pageIndex,pageSize);
+
+        ResponseDto dto=new ResponseDto();
+        dto.setCode("0");
+        dto.setContent(list);
+
+        return dto;
     }
 
     /**
