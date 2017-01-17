@@ -12,16 +12,16 @@
     <select id="getLeagueListByCompetitionIdOfOver" parameterType="map" resultType="cn.footballtime.api.model.League">
         select
         <include refid="Base_Column_List" />,
-        (select Name from Team where TeamNo=League.HomeTeamNo) as HomeTeamName,
-        (select Name from Team where TeamNo=League.GuestTeamNo) as GuestTeamName
+        (select FullName from Team where TeamNo=League.HomeTeamNo) as HomeTeamName,
+        (select FullName from Team where TeamNo=League.GuestTeamNo) as GuestTeamName
         from League where CompetitionId = #{competitionId} and length(FullScore)>0
         order by BjTime desc,LeagueNo asc limit #{startIndex},#{pageSize}
     </select>
     <select id="getLeagueListByCompetitionIdOfFuture" parameterType="map" resultType="cn.footballtime.api.model.League">
         select
         <include refid="Base_Column_List" />,
-        (select Name from Team where TeamNo=League.HomeTeamNo) as HomeTeamName,
-        (select Name from Team where TeamNo=League.GuestTeamNo) as GuestTeamName
+        (select FullName from Team where TeamNo=League.HomeTeamNo) as HomeTeamName,
+        (select FullName from Team where TeamNo=League.GuestTeamNo) as GuestTeamName
         from League where CompetitionId = #{competitionId} and FullScore=''
         order by BjTime asc,LeagueNo asc limit #{startIndex},#{pageSize}
     </select>

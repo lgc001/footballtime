@@ -1,13 +1,8 @@
 package cn.footballtime.web.controller;
 
-import cn.footballtime.utils.SecurityUtil;
 import cn.footballtime.web.config.AppSetting;
 import cn.footballtime.web.service.ManageService;
 import cn.footballtime.web.util.CommonUtil;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/1/4.
@@ -43,7 +35,7 @@ public class ManageController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String userName = request.getParameter("userName");
+        String userName = request.getParameter("username");
         String password = request.getParameter("password");
 
         boolean isLoginSuccess = _manageService.login(userName,password);
@@ -69,6 +61,11 @@ public class ManageController {
         model.addAttribute("userName", userName);
 
         return "manage/index";
+    }
+
+    @RequestMapping(value = "/team")
+    public String team() {
+        return "manage/team";
     }
 
     @RequestMapping(value = "/uploadTeamLogo", method = RequestMethod.POST)
@@ -104,7 +101,7 @@ public class ManageController {
 
         InputStream input = file.getInputStream();
 
-        SaveFileFromInputStream(input, savePath.toString(), newFilename);
+        saveFileFromInputStream(input, savePath.toString(), newFilename);
 
         return "manage/login";
     }
@@ -125,7 +122,7 @@ public class ManageController {
         return userName;
     }
 
-    public void SaveFileFromInputStream(InputStream stream, String path, String filename) throws IOException {
+    private void saveFileFromInputStream(InputStream stream, String path, String filename) throws IOException {
         FileOutputStream fs = new FileOutputStream(path + "/" + filename);
         byte[] buffer = new byte[1024 * 1024];
         int bytesum = 0;
