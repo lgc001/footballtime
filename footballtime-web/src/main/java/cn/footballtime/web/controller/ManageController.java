@@ -1,11 +1,14 @@
 package cn.footballtime.web.controller;
 
+import cn.footballtime.dto.CompetitionDto;
 import cn.footballtime.web.config.AppSetting;
+import cn.footballtime.web.service.CompetitionService;
 import cn.footballtime.web.service.ManageService;
 import cn.footballtime.web.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +29,9 @@ import java.util.Date;
 public class ManageController {
     @Autowired
     private ManageService _manageService;
+
+    @Autowired
+    private CompetitionService _competitionService;
 
     @RequestMapping(value = "/login")
     public String login() {
@@ -60,12 +66,37 @@ public class ManageController {
 
         model.addAttribute("userName", userName);
 
-        return "manage/index";
+        return "/manage/index";
     }
 
     @RequestMapping(value = "/team")
-    public String team() {
+    public String team(HttpServletRequest request, HttpServletResponse response,String competitionNo, Model model) throws Exception {
+        String userName = manageLogin(request);
+        if (userName.length() == 0) {
+            response.sendRedirect("login");
+        }
+
+        //默认为2
+        competitionNo = StringUtils.isEmpty(competitionNo) ? "A02" : competitionNo;
+
+        CompetitionDto obj = _competitionService.getByCompetitionNo(competitionNo);
+
+        model.addAttribute("userName", userName);
+        model.addAttribute("competitionName", obj.getName());
+
         return "manage/team";
+    }
+
+    @RequestMapping(value = "/uploadTeamLogo")
+    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response,String teamNo, Model model) throws Exception {
+        String userName = manageLogin(request);
+        if (userName.length() == 0) {
+            response.sendRedirect("login");
+        }
+
+        model.addAttribute("userName", userName);
+
+        return "manage/uploadTeamLogo";
     }
 
     @RequestMapping(value = "/uploadTeamLogo", method = RequestMethod.POST)

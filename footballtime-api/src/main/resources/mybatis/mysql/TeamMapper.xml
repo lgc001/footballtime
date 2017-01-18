@@ -7,10 +7,10 @@
     <result column="FullName" property="fullName" javaType="String" jdbcType="VARCHAR" />
     <result column="CompetitionId" property="competitionId" javaType="String" jdbcType="VARCHAR" />
     <result column="IsClub" property="isClub" javaType="boolean" jdbcType="BOOLEAN" />
-    <result column="IsCurrentSeason" property="isCurrentSeason" javaType="int" jdbcType="INTEGER" />
+    <result column="PicNo" property="picNo" javaType="String" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
-    TeamNo,Name,FullName,CompetitionId,IsClub,IsCurrentSeason
+    TeamNo,Name,FullName,CompetitionId,IsClub,PicNo
   </sql>
   <select id="findByTeamNo" parameterType="String" resultMap="BaseResultMap">
     select 
@@ -25,7 +25,4 @@
     UPDATE Team SET Name=#{name},FullName=#{fullName},CompetitionId=#{competitionId}
     WHERE TeamNo=#{teamNo}
   </update>
-  <select id="getTeamListOfCurrentSeason" parameterType="String" resultMap="BaseResultMap">
-    select TeamNo,Name,FullName from Team where CompetitionId=#{competitionId} and IsCurrentSeason = 1
-  </select>
 </mapper>

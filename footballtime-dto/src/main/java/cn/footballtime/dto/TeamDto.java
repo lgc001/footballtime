@@ -11,5 +11,5 @@ public class TeamDto {
 	private String fullName;
 	private String competitionId;
 	private boolean isClub;
-	private int isCurrentSeason;
+	private String picNo;
 }

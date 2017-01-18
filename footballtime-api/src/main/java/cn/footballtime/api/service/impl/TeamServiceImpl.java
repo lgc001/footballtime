@@ -1,5 +1,6 @@
 package cn.footballtime.api.service.impl;
 
+import cn.footballtime.api.dao.SeasonTeamRepository;
 import cn.footballtime.api.dao.TeamRepository;
 import cn.footballtime.api.model.Team;
 import cn.footballtime.api.service.TeamService;
@@ -12,6 +13,8 @@ import java.util.List;
 public class TeamServiceImpl implements TeamService {
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private SeasonTeamRepository seasonTeamRepository;
 
     public Team findByTeamNo(String teamNo)
     {
@@ -32,8 +35,8 @@ public class TeamServiceImpl implements TeamService {
         return true;
     }
 
-    public List<Team> getTeamListOfCurrentSeason(String competitionId)
+    public List<Team> getTeamListBySeason(String competitionId,String season)
     {
-        return teamRepository.getTeamListOfCurrentSeason(competitionId);
+        return seasonTeamRepository.getTeamListBySeason(competitionId,season);
     }
 }

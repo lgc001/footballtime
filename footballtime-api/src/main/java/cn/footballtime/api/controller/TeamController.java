@@ -20,12 +20,12 @@ public class TeamController {
 	@Autowired
 	private TeamService _teamService;
 
-	@RequestMapping("/getTeamListOfCurrentSeason")
+	@RequestMapping("/getTeamListBySeason")
 	@ResponseBody
-	public ResponseDto getTeamListOfCurrentSeason(String competitionNo)
+	public ResponseDto getTeamListBySeason(String competitionNo,String season)
 	{
 		String competitionId = FootballCommon.getCompetitionId(competitionNo);
-		List<Team> teams = _teamService.getTeamListOfCurrentSeason(competitionId);
+		List<Team> teams = _teamService.getTeamListBySeason(competitionId,season);
 		
 		ResponseDto dto=new ResponseDto();
 		dto.setCode("0");

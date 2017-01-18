@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TeamRepository {
-    Team findByTeamNo(String teamNo);
-    void insertTeam(Team team);
-    void updateTeamByTeamNo(Team team);
+public interface SeasonTeamRepository {
+    List<Team> getTeamListBySeason(String competitionId, String season);
 }
