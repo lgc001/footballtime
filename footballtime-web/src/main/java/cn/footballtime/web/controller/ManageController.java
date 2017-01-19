@@ -70,16 +70,16 @@ public class ManageController {
     }
 
     @RequestMapping(value = "/team")
-    public String team(HttpServletRequest request, HttpServletResponse response,String competitionNo, Model model) throws Exception {
+    public String team(HttpServletRequest request, HttpServletResponse response,String competitionId, Model model) throws Exception {
         String userName = manageLogin(request);
         if (userName.length() == 0) {
             response.sendRedirect("login");
         }
 
         //默认为2
-        competitionNo = StringUtils.isEmpty(competitionNo) ? "A02" : competitionNo;
+        competitionId = StringUtils.isEmpty(competitionId) ? "2" : competitionId;
 
-        CompetitionDto obj = _competitionService.getByCompetitionNo(competitionNo);
+        CompetitionDto obj = _competitionService.getCompetitionByCode(competitionId);
 
         model.addAttribute("userName", userName);
         model.addAttribute("competitionName", obj.getName());

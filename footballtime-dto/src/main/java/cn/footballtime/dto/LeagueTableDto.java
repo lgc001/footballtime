@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 public class LeagueTableDto implements Serializable {
     private String id;
-    private String competitionNo;
+    private String competitionId;
     private String season;
     private String round;
     private String teamNo;

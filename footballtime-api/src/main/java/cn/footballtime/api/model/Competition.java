@@ -14,12 +14,12 @@ public class Competition {
         this.id = id;
     }
 
-    public String getCompetitionNo() {
-        return competitionNo;
+    public String getCode() {
+        return code;
     }
 
-    public void setCompetitionNo(String competitionNo) {
-        this.competitionNo = competitionNo;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -63,7 +63,7 @@ public class Competition {
     }
 
     private String id;
-    private String competitionNo;
+    private String code;
     @SerializedName("competitionName")//别名
     private String name;
     private String country;

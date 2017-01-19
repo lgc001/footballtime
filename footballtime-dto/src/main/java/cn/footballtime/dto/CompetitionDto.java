@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class CompetitionDto {
     private String id;
-    private String competitionNo;
+    private String code;
     private String name;
     private String country;
     private String fullName;

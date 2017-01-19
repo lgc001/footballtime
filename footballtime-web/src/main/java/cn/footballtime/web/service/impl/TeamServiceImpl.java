@@ -18,11 +18,12 @@ import java.util.Map;
  */
 @Service
 public class TeamServiceImpl implements TeamService {
-    public List<TeamDto> GetTeamListOfCurrentSeason(String competitionNo)
+    public List<TeamDto> GetTeamListOfCurrentSeason(String competitionId,String season)
     {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("competitionNo", competitionNo);
+            params.put("competitionId", competitionId);
+            params.put("season", season);
             String apiUrl = AppSetting.getDataApiUrl()+"team/getTeamListOfCurrentSeason";
             String result = HttpClientUtil.httpPostRequest(apiUrl, params);
 

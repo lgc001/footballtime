@@ -4,7 +4,7 @@
   <sql id="Base_Column_List">
     TeamNo,Name,FullName,CompetitionId,IsClub,PicNo
   </sql>
-  <select id="getTeamListBySeason" parameterType="map" resultMap="BaseResultMap">
+  <select id="getTeamListBySeason" parameterType="map" resultType="cn.footballtime.api.model.SeasonTeam">
     select <include refid="Base_Column_List" /> from SeasonTeam where CompetitionId=#{competitionId} and Season = #{Season}
   </select>
 </mapper>

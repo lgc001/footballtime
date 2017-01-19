@@ -4,11 +4,11 @@ package cn.footballtime.api.common;
  * Created by Administrator on 2016/12/10.
  */
 public class FootballCommon {
-    public static String getCompetitionName(String competitionNo) {
+    public static String getCompetitionName(String code) {
         String name = "";
 
-        competitionNo = competitionNo.toUpperCase();
-        switch (competitionNo) {
+        code = code.toUpperCase();
+        switch (code) {
             case "A01":
                 name = "德甲";
                 break;
@@ -31,11 +31,11 @@ public class FootballCommon {
         return name;
     }
 
-    public static String getCompetitionId(String competitionNo) {
+    public static String getCompetitionId(String code) {
         String competitionId = "1";
 
-        competitionNo = competitionNo.toUpperCase();
-        switch (competitionNo) {
+        code = code.toUpperCase();
+        switch (code) {
             case "A01":
                 competitionId = "1";
                 break;

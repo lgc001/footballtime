@@ -29,14 +29,14 @@ public class LeagueController {
     @Autowired
     private LeagueService leagueService;
 
-    @RequestMapping(value="/{competitionNo:[aA]{1}\\d{2}}")//参数配这种形式时，参数前需要加@PathVariable
-    public String index(@PathVariable String competitionNo, Model model) {
-        CompetitionDto obj =competitionService.getByCompetitionNo(competitionNo);
+    @RequestMapping(value="/{code:[aA]{1}\\d{2}}")//参数配这种形式时，参数前需要加@PathVariable
+    public String index(@PathVariable String code, Model model) {
+        CompetitionDto obj =competitionService.getCompetitionByCode(code);
 
         model.addAttribute("title", obj.getFullName());
         model.addAttribute("competitionName", obj.getName());
 
-        List<TeamDto> teamList = teamService.GetTeamListOfCurrentSeason(competitionNo);
+        List<TeamDto> teamList = teamService.GetTeamListOfCurrentSeason(obj.getId(),obj.getCurrentSeason());
         model.addAttribute("teamList", teamList);
 
         List<LeagueDto> overLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),true,1,10);

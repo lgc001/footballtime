@@ -22,9 +22,8 @@ public class TeamController {
 
 	@RequestMapping("/getTeamListBySeason")
 	@ResponseBody
-	public ResponseDto getTeamListBySeason(String competitionNo,String season)
+	public ResponseDto getTeamListBySeason(String competitionId,String season)
 	{
-		String competitionId = FootballCommon.getCompetitionId(competitionNo);
 		List<Team> teams = _teamService.getTeamListBySeason(competitionId,season);
 		
 		ResponseDto dto=new ResponseDto();

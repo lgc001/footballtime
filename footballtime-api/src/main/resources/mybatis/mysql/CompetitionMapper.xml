@@ -3,16 +3,16 @@
 <mapper namespace="cn.footballtime.api.dao.CompetitionRepository">
   <resultMap id="BaseResultMap" type="cn.footballtime.api.model.Competition">
     <id column="Id" property="id" jdbcType="VARCHAR" />
-    <result column="CompetitionNo" property="competitionNo" jdbcType="VARCHAR" />
+    <result column="Code" property="code" jdbcType="VARCHAR" />
     <result column="Name" property="name" jdbcType="VARCHAR" />
     <result column="Country" property="country" jdbcType="VARCHAR" />
     <result column="FullName" property="fullName" jdbcType="VARCHAR" />
     <result column="IsLeague" property="isLeague" jdbcType="BOOLEAN" />
   </resultMap>
   <sql id="Base_Column_List">
-    Id,CompetitionNo,Name,Country,FullName,IsLeague,CurrentSeason
+    Id,Code,Name,Country,FullName,IsLeague,CurrentSeason
   </sql>
-  <select id="getByCompetitionId" resultMap="BaseResultMap">
+  <select id="getByCompetitionId" parameterType="String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from Competition where Id=#{id}

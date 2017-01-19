@@ -23,16 +23,16 @@ public class CompetitionController {
     @Resource
     private CompetitionService competitionService;
 
-    @RequestMapping("/getCompetitionByNo")
+    @RequestMapping("/getCompetitionByCode")
     @ResponseBody
-    public ResponseDto getCompetitionList(String competitionNo)
+    public ResponseDto getCompetitionByCode(String code)
     {
-        String competitionId = FootballCommon.getCompetitionId(competitionNo);
+        String competitionId = FootballCommon.getCompetitionId(code);
         Competition obj = competitionService.getByCompetitionId(competitionId);
 
         CompetitionDto dto=new CompetitionDto();
         dto.setId(obj.getId());
-        dto.setCompetitionNo(obj.getCompetitionNo());
+        dto.setCode(obj.getCode());
         dto.setName(obj.getName());
         dto.setFullName(obj.getFullName());
         dto.setCountry(obj.getCountry());
