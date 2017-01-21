@@ -17,12 +17,12 @@ import java.util.Map;
  */
 @Service
 public class CompetitionServiceImpl implements CompetitionService {
-    public CompetitionDto getCompetitionByCode(String code)
+    public CompetitionDto getCompetitionById(String id)
     {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("code", code);
-            String apiUrl = AppSetting.getDataApiUrl()+"competition/getCompetitionByCode";
+            params.put("id", id);
+            String apiUrl = AppSetting.getDataApiUrl()+"competition/getCompetitionById";
             String result = HttpClientUtil.httpGetRequest(apiUrl, params);
 
             ResponseDto<CompetitionDto> responseDto = JsonUtil.fromJson(result, new TypeToken<ResponseDto<CompetitionDto>>(){}.getType());//TypeToken，它是gson提供的数据类型转换器，可以支持各种数据集合类型转换。

@@ -55,11 +55,11 @@ public class Competition {
     }
 
     public String getCurrentSeason() {
-        return CurrentSeason;
+        return currentSeason;
     }
 
     public void setCurrentSeason(String currentSeason) {
-        CurrentSeason = currentSeason;
+        this.currentSeason = currentSeason;
     }
 
     private String id;
@@ -69,5 +69,5 @@ public class Competition {
     private String country;
     private String fullName;
     private boolean isLeague;
-    private String CurrentSeason;
+    private String currentSeason;
 }

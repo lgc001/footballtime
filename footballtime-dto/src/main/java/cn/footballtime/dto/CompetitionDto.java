@@ -16,5 +16,5 @@ public class CompetitionDto {
     private String country;
     private String fullName;
     private boolean isLeague;
-    private String CurrentSeason;
+    private String currentSeason;
 }

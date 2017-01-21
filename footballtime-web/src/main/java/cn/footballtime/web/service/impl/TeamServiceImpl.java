@@ -9,6 +9,7 @@ import cn.footballtime.web.service.TeamService;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +19,13 @@ import java.util.Map;
  */
 @Service
 public class TeamServiceImpl implements TeamService {
-    public List<TeamDto> GetTeamListOfCurrentSeason(String competitionId,String season)
+    public List<TeamDto> GetTeamListByCompeitionIdAndSeason(String competitionId,String season)
     {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("competitionId", competitionId);
             params.put("season", season);
-            String apiUrl = AppSetting.getDataApiUrl()+"team/getTeamListOfCurrentSeason";
+            String apiUrl = AppSetting.getDataApiUrl()+"team/getTeamListBySeason";
             String result = HttpClientUtil.httpPostRequest(apiUrl, params);
 
             ResponseDto<List<TeamDto>> responseDto = JsonUtil.fromJson(result, new TypeToken<ResponseDto<List<TeamDto>>>(){}.getType());//TypeToken，它是gson提供的数据类型转换器，可以支持各种数据集合类型转换。
@@ -34,7 +35,7 @@ public class TeamServiceImpl implements TeamService {
         }
         catch (Exception ex)
         {
-            return null;
+            return new ArrayList<TeamDto>();
         }
     }
 }

@@ -17,6 +17,7 @@ public class AppSetting {
             siteDomainUrl = util.readValue("siteDomainUrl");
             dataApiUrl = util.readValue("footballApiUrl");
             uploadPicPath = util.readValue("uploadPicPath");
+            picUrl = util.readValue("picUrl");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -72,4 +73,7 @@ public class AppSetting {
     public static String getUploadPicPath() {
         return  uploadPicPath;
     }
+
+    private static String picUrl;
+    public static String getPicUrl(){return picUrl;}
 }

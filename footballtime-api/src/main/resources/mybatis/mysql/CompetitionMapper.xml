@@ -8,6 +8,7 @@
     <result column="Country" property="country" jdbcType="VARCHAR" />
     <result column="FullName" property="fullName" jdbcType="VARCHAR" />
     <result column="IsLeague" property="isLeague" jdbcType="BOOLEAN" />
+    <result column="CurrentSeason" property="currentSeason" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
     Id,Code,Name,Country,FullName,IsLeague,CurrentSeason

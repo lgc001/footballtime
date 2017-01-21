@@ -1,6 +1,5 @@
 package cn.footballtime.api.controller;
 
-import cn.footballtime.api.common.FootballCommon;
 import cn.footballtime.api.model.Competition;
 import cn.footballtime.api.service.CompetitionService;
 import cn.footballtime.dto.CompetitionDto;
@@ -23,12 +22,11 @@ public class CompetitionController {
     @Resource
     private CompetitionService competitionService;
 
-    @RequestMapping("/getCompetitionByCode")
+    @RequestMapping("/getCompetitionById")
     @ResponseBody
-    public ResponseDto getCompetitionByCode(String code)
+    public ResponseDto getCompetitionByCode(String id)
     {
-        String competitionId = FootballCommon.getCompetitionId(code);
-        Competition obj = competitionService.getByCompetitionId(competitionId);
+        Competition obj = competitionService.getByCompetitionId(id);
 
         CompetitionDto dto=new CompetitionDto();
         dto.setId(obj.getId());

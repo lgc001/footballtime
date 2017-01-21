@@ -1,9 +1,11 @@
 package cn.footballtime.web.controller;
 
 import cn.footballtime.dto.CompetitionDto;
+import cn.footballtime.dto.TeamDto;
 import cn.footballtime.web.config.AppSetting;
 import cn.footballtime.web.service.CompetitionService;
 import cn.footballtime.web.service.ManageService;
+import cn.footballtime.web.service.TeamService;
 import cn.footballtime.web.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/1/4.
@@ -32,6 +35,9 @@ public class ManageController {
 
     @Autowired
     private CompetitionService _competitionService;
+
+    @Autowired
+    private TeamService _teamService;
 
     @RequestMapping(value = "/login")
     public String login() {
@@ -79,10 +85,15 @@ public class ManageController {
         //默认为2
         competitionId = StringUtils.isEmpty(competitionId) ? "2" : competitionId;
 
-        CompetitionDto obj = _competitionService.getCompetitionByCode(competitionId);
+        CompetitionDto obj = _competitionService.getCompetitionById(competitionId);
 
         model.addAttribute("userName", userName);
         model.addAttribute("competitionName", obj.getName());
+
+        List<TeamDto> teamList = _teamService.GetTeamListByCompeitionIdAndSeason(competitionId,obj.getCurrentSeason());
+        model.addAttribute("teamList", teamList);
+
+        model.addAttribute("picUrl",AppSetting.getPicUrl());
 
         return "manage/team";
     }
@@ -108,12 +119,13 @@ public class ManageController {
 
         //上传目录
         Date currentTime = new Date();
-        SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMM");
-        String folderName = formatDate.format(currentTime);
-        String path = AppSetting.getUploadPicPath() + "/" + folderName + "/";//request.getServletContext().getRealPath("/")+"upload/images/"+folderName+"/";
+        String timeFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(currentTime);
+        String folderName = timeFileName.substring(0,6);
+        String rootPath = request.getSession().getServletContext().getRealPath("/") + "upload/";//AppSetting.getUploadPicPath()
+        String path = rootPath + folderName + "/";//request.getServletContext().getRealPath("/")+"upload/images/"+folderName+"/";
         File savePath = new File(path);
         if (!savePath.exists()) { // 文件夹
-            savePath.mkdir();
+            savePath.mkdirs();
         }
 
         // 转型为MultipartHttpRequest：
@@ -123,11 +135,11 @@ public class ManageController {
         // 获得文件名：
         String originalFilename = file.getOriginalFilename();
         String extendName = originalFilename.substring(originalFilename.lastIndexOf("."));
+        extendName = extendName.toLowerCase().replace("jpep","jpg");
         String picNo = CommonUtil.getPicNoByPicExtendName(extendName);
         if (picNo.length() == 0) {
             throw new Exception("只接受jpg,png,gif这三种类型图");
         }
-        String timeFileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(currentTime);
         String newFilename = timeFileName + picNo + extendName;
 
         InputStream input = file.getInputStream();
@@ -135,6 +147,15 @@ public class ManageController {
         saveFileFromInputStream(input, savePath.toString(), newFilename);
 
         return "manage/login";
+    }
+
+    @RequestMapping("/logout")
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        //将数据存储到session中
+        session.setAttribute("uid", "");
+
+        response.sendRedirect("login");
     }
 
     /**

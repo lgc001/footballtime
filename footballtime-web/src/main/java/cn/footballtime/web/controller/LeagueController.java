@@ -7,6 +7,7 @@ import cn.footballtime.dto.TeamDto;
 import cn.footballtime.web.service.CompetitionService;
 import cn.footballtime.web.service.LeagueService;
 import cn.footballtime.web.service.TeamService;
+import cn.footballtime.web.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +32,14 @@ public class LeagueController {
 
     @RequestMapping(value="/{code:[aA]{1}\\d{2}}")//参数配这种形式时，参数前需要加@PathVariable
     public String index(@PathVariable String code, Model model) {
-        CompetitionDto obj =competitionService.getCompetitionByCode(code);
+        String competitionId = CommonUtil.getCompetitionId(code);
+
+        CompetitionDto obj =competitionService.getCompetitionById(competitionId);
 
         model.addAttribute("title", obj.getFullName());
         model.addAttribute("competitionName", obj.getName());
 
-        List<TeamDto> teamList = teamService.GetTeamListOfCurrentSeason(obj.getId(),obj.getCurrentSeason());
+        List<TeamDto> teamList = teamService.GetTeamListByCompeitionIdAndSeason(obj.getId(),obj.getCurrentSeason());
         model.addAttribute("teamList", teamList);
 
         List<LeagueDto> overLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),true,1,10);

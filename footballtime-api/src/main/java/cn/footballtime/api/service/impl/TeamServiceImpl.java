@@ -7,7 +7,9 @@ import cn.footballtime.api.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TeamServiceImpl implements TeamService {
@@ -37,6 +39,9 @@ public class TeamServiceImpl implements TeamService {
 
     public List<Team> getTeamListBySeason(String competitionId,String season)
     {
-        return seasonTeamRepository.getTeamListBySeason(competitionId,season);
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("competitionId", competitionId);
+        params.put("season", season);
+        return seasonTeamRepository.getTeamListBySeason(params);
     }
 }

@@ -1,12 +1,9 @@
 package cn.footballtime.api.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cn.footballtime.api.common.FootballCommon;
 import cn.footballtime.api.model.Team;
 import cn.footballtime.api.service.TeamService;
-import cn.footballtime.dto.TeamDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
