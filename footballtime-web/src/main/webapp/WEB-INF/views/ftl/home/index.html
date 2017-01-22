@@ -81,270 +81,68 @@
         </div>
         <table class="table table-hover">
             <tbody>
+            <#list leagueListA04 as league>
             <tr>
-                <td>2016-04-18 22:30</td>
-                <td><a href="http://www.footballtime.cn" target="_blank">切尔西</a></td>
-                <td>1-1</td>
-                <td>曼联</td>
+                <td>${league.bjTime}</td>
+                <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                <td>${league.fullScore}</td>
+                <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
             </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
+            </#list>
             </tbody>
         </table>
     </div>
     <div class="col-md-6 margin15">
         <div>
-            <div class="col-md-10 section-header"><h4>英超</h4></div>
-            <div class="col-md-2 section-header"><h4>更多</h4></div>
+            <div class="col-md-10 section-header"><h4><a href="league/A02">英超</a></h4></div>
+            <div class="col-md-2 section-header"><h4><a href="league/A02">更多</a></h4></div>
         </div>
         <table class="table table-hover">
             <tbody>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
+            <#list leagueListA02 as league>
+                <tr>
+                    <td>${league.bjTime}</td>
+                    <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                    <td>${league.fullScore}</td>
+                    <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
+                </tr>
+            </#list>
             </tbody>
         </table>
     </div>
     <div class="col-md-6 margin15">
         <div>
-            <div class="col-md-10 section-header"><h4>意甲</h4></div>
-            <div class="col-md-2 section-header"><h4>更多</h4></div>
+            <div class="col-md-10 section-header"><h4><a href="league/A03">意甲</a></h4></div>
+            <div class="col-md-2 section-header"><h4><a href="league/A03">更多</a></h4></div>
         </div>
         <table class="table table-hover">
             <tbody>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
+            <#list leagueListA03 as league>
+                <tr>
+                    <td>${league.bjTime}</td>
+                    <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                    <td>${league.fullScore}</td>
+                    <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
+                </tr>
+            </#list>
             </tbody>
         </table>
     </div>
     <div class="col-md-6 margin15">
         <div>
-            <div class="col-md-10 section-header"><h4>德甲</h4></div>
-            <div class="col-md-2 section-header"><h4>更多</h4></div>
+            <div class="col-md-10 section-header"><h4><a href="league/A01">德甲</a></h4></div>
+            <div class="col-md-2 section-header"><h4><a href="league/A01">更多</a></h4></div>
         </div>
         <table class="table table-hover">
             <tbody>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
-            <tr>
-                <td>2016-04-18 22:30</td>
-                <td>切尔西</td>
-                <td>1-1</td>
-                <td>曼联</td>
-            </tr>
+            <#list leagueListA03 as league>
+                <tr>
+                    <td>${league.bjTime}</td>
+                    <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                    <td>${league.fullScore}</td>
+                    <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
+                </tr>
+            </#list>
             </tbody>
         </table>
     </div>

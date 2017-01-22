@@ -29,4 +29,16 @@ public class TeamController {
 		
 		return dto;
 	}
+
+	@RequestMapping("/modifyTeamLogo")
+	@ResponseBody
+	public ResponseDto modifyTeamLogo(String teamNo,String picNo)
+	{
+		boolean isSuccess = _teamService.modifyTeamLogo(teamNo,picNo);
+
+		ResponseDto dto=new ResponseDto();
+		dto.setCode("0");
+
+		return dto;
+	}
 }

@@ -10,4 +10,6 @@ public interface TeamService {
     boolean updateTeamByTeamNo(Team team);
 
     List<Team> getTeamListBySeason(String competitionId,String season);
+
+    boolean modifyTeamLogo(String teamNo,String picNo);
 }

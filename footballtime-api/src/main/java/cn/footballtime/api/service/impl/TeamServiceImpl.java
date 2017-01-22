@@ -44,4 +44,14 @@ public class TeamServiceImpl implements TeamService {
         params.put("season", season);
         return seasonTeamRepository.getTeamListBySeason(params);
     }
+
+    public boolean modifyTeamLogo(String teamNo,String picNo)
+    {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("teamNo", teamNo);
+        params.put("picNo", picNo);
+        teamRepository.modifyTeamLogo(params);
+
+        return true;
+    }
 }

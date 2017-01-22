@@ -6,6 +6,8 @@
     <h1 class="page-header">上传球队logo</h1>
     <form class="form-horizontal" role="form" method="post" action="/manage/uploadTeamLogo" enctype="multipart/form-data">
         <input type="file" name="filePic" />
+        <input type="hidden" name="teamNo" value="${teamNo}" />
+        <input type="hidden" name="competitionId" value="${competitionId}" />
         <button type="submit" class="btn btn-default">上传</button>
     </form>
 </div>

@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface TeamService {
     List<TeamDto> GetTeamListByCompeitionIdAndSeason(String competitionId,String season);
+    boolean modifyTeamLogo(String teamNo,String picNo);
 }

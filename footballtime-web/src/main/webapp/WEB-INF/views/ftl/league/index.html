@@ -10,7 +10,7 @@
 <div class="row">
     <div id="team-list" class="col-md-12">
         <#list teamList as team>
-        <a href="/team/index?id=${team.teamNo}">
+        <a href="/team/${team.teamNo}">
             <img title="${team.fullName}" src="/images/temp/130.png" height="50" width="50">
             <div title="${team.fullName}"><span><nobr>${team.fullName}</nobr></span></div>
         </a>
@@ -35,9 +35,9 @@
             <#list overLeagueList as league>
                 <tr>
                     <td>${league.bjTime}</td>
-                    <td><a href="/team/index?id=${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                    <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
                     <td>${league.fullScore}</td>
-                    <td><a href="/team/index?id=${league.guestTeamNo}">${league.guestTeamName}</a></td>
+                    <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
                 </tr>
             </#list>
             </tbody>
@@ -58,8 +58,8 @@
             <#list futureLeagueList as league>
                 <tr>
                     <td>${league.bjTime}（周六）</td>
-                    <td><a href="/team/index?id=${league.homeTeamNo}">${league.homeTeamName}</a></td>
-                    <td><a href="/team/index?id=${league.guestTeamNo}">${league.guestTeamName}</a></td>
+                    <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
+                    <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
                     <td>最近交锋</td>
                 </tr>
             </#list>

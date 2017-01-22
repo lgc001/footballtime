@@ -6,7 +6,7 @@
     <result column="Name" property="name" javaType="String" jdbcType="VARCHAR" />
     <result column="FullName" property="fullName" javaType="String" jdbcType="VARCHAR" />
     <result column="CompetitionId" property="competitionId" javaType="String" jdbcType="VARCHAR" />
-    <result column="IsClub" property="isClub" javaType="boolean" jdbcType="BOOLEAN" />
+    <result column="IsClub" property="isClub" javaType="Boolean" jdbcType="BOOLEAN" />
     <result column="PicNo" property="picNo" javaType="String" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -24,5 +24,8 @@
   <update id="updateTeamByTeamNo" parameterType="cn.footballtime.api.model.Team">
     UPDATE Team SET Name=#{name},FullName=#{fullName},CompetitionId=#{competitionId}
     WHERE TeamNo=#{teamNo}
+  </update>
+  <update id="modifyTeamLogo" parameterType="map">
+    UPDATE Team SET PicNo=#{picNo} WHERE TeamNo=#{teamNo}
   </update>
 </mapper>

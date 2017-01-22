@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -88,6 +90,7 @@ public class ManageController {
         CompetitionDto obj = _competitionService.getCompetitionById(competitionId);
 
         model.addAttribute("userName", userName);
+        model.addAttribute("competitionId", competitionId);
         model.addAttribute("competitionName", obj.getName());
 
         List<TeamDto> teamList = _teamService.GetTeamListByCompeitionIdAndSeason(competitionId,obj.getCurrentSeason());
@@ -99,19 +102,21 @@ public class ManageController {
     }
 
     @RequestMapping(value = "/uploadTeamLogo")
-    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response,String teamNo, Model model) throws Exception {
+    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response,String competitionId,String teamNo, Model model) throws Exception {
         String userName = manageLogin(request);
         if (userName.length() == 0) {
             response.sendRedirect("login");
         }
 
         model.addAttribute("userName", userName);
+        model.addAttribute("competitionId",competitionId);
+        model.addAttribute("teamNo",teamNo);
 
         return "manage/uploadTeamLogo";
     }
 
     @RequestMapping(value = "/uploadTeamLogo", method = RequestMethod.POST)
-    public String uploadTeamLogo(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+    public void uploadTeamLogo(HttpServletRequest request, HttpServletResponse response,Model model) throws Exception {
         String userName = manageLogin(request);
         if (userName.length() == 0) {
             response.sendRedirect("login");
@@ -132,8 +137,15 @@ public class ManageController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         // 获得文件：
         MultipartFile file = multipartRequest.getFile("filePic");
+        String teamNo = multipartRequest.getParameter("teamNo");
+        String competitionId = multipartRequest.getParameter("competitionId");
         // 获得文件名：
         String originalFilename = file.getOriginalFilename();
+        if(originalFilename.length()==0)
+        {
+            throw new Exception("请选择图片");
+        }
+
         String extendName = originalFilename.substring(originalFilename.lastIndexOf("."));
         extendName = extendName.toLowerCase().replace("jpep","jpg");
         String picNo = CommonUtil.getPicNoByPicExtendName(extendName);
@@ -144,9 +156,17 @@ public class ManageController {
 
         InputStream input = file.getInputStream();
 
-        saveFileFromInputStream(input, savePath.toString(), newFilename);
+        try {
+            saveFileFromInputStream(input, savePath.toString(), newFilename);
 
-        return "manage/login";
+            _teamService.modifyTeamLogo(teamNo,timeFileName + picNo);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
+        response.sendRedirect("team?competitionId="+competitionId);
     }
 
     @RequestMapping("/logout")
