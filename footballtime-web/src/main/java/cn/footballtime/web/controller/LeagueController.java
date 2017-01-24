@@ -4,6 +4,7 @@ import cn.footballtime.dto.CompetitionDto;
 import cn.footballtime.dto.LeagueDto;
 import cn.footballtime.dto.LeagueTableDto;
 import cn.footballtime.dto.TeamDto;
+import cn.footballtime.web.config.AppSetting;
 import cn.footballtime.web.service.CompetitionService;
 import cn.footballtime.web.service.LeagueService;
 import cn.footballtime.web.service.TeamService;
@@ -47,6 +48,8 @@ public class LeagueController {
 
         List<LeagueDto> futureLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),false,1,10);
         model.addAttribute("futureLeagueList", futureLeagueList);
+
+        model.addAttribute("picUrl", AppSetting.getPicUrl());
 
         return "league/index";
     }

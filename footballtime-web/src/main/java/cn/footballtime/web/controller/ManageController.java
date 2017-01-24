@@ -128,8 +128,8 @@ public class ManageController {
         String folderName = timeFileName.substring(0,6);
 
         //System.getProperty("file.separator")能根据系统(windows或linux)的不同获取文件路径的分隔符
-        String rootPath = AppSetting.getUploadPicPath();//request.getSession().getServletContext().getRealPath("/") + "upload"+System.getProperty("file.separator");//AppSetting.getUploadPicPath()
-        String path = rootPath + folderName + System.getProperty("file.separator");//request.getServletContext().getRealPath("/")+"upload/images/"+folderName+"/";
+        String rootPath = AppSetting.getUploadPicPath();//request.getServletContext().getRealPath("/") + "upload"+System.getProperty("file.separator");
+        String path = rootPath + folderName + System.getProperty("file.separator");
         File savePath = new File(path);
         if (!savePath.exists()) { // 文件夹
             savePath.mkdirs();
