@@ -96,8 +96,6 @@ public class ManageController {
         List<TeamDto> teamList = _teamService.GetTeamListByCompeitionIdAndSeason(competitionId,obj.getCurrentSeason());
         model.addAttribute("teamList", teamList);
 
-        model.addAttribute("picUrl",AppSetting.getPicUrl());
-
         return "manage/team";
     }
 

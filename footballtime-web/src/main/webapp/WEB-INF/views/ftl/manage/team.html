@@ -41,10 +41,10 @@
                     <td>${team.fullName}</td>
                     <td>${team.isClub ? string ("true", "false")}</td>
                     <td>
-                    <#if team.picName?length == 0>
+                    <#if team.picPath?length == 0>
                         <a href="uploadTeamLogo?competitionId=${competitionId}&teamNo=${team.teamNo}">上传</a>
                     <#else>
-                        <a href="uploadTeamLogo?competitionId=${competitionId}&teamNo=${team.teamNo}"><img src="${picUrl}${team.picNo[0..5]}/${team.picName}" height="50px" /></a>
+                        <a href="uploadTeamLogo?competitionId=${competitionId}&teamNo=${team.teamNo}"><img src="${team.picPath}" height="50px" /></a>
                     </#if>
                     </td>
                 </tr>

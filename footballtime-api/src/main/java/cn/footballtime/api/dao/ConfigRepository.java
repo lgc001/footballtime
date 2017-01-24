@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface ConfigRepository {
     String getValueByKey(String configKey);
-    List<ConfigInfo> getList();
+    List<ConfigInfo> getList(String category);
 }

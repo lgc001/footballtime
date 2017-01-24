@@ -40,7 +40,7 @@ public class AppSetting {
             return configDict;
         }
 
-        List<ConfigInfo> list = appSetting.configService.getList();
+        List<ConfigInfo> list = appSetting.configService.getList("api");
         Dictionary<String,String> dict=new Hashtable<String, String>();
         for (ConfigInfo item:
                 list) {
@@ -48,5 +48,10 @@ public class AppSetting {
         }
         configDict = dict;
         return configDict;
+    }
+
+    public static String getApiSecurityKey()
+    {
+        return getConfigDict().get("apiSecurityKey");
     }
 }

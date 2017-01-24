@@ -4,7 +4,7 @@
     <select id="getValueByKey" parameterType="String" resultType="String">
         select ConfigValue from Config where ConfigKey = #{configKey}
     </select>
-    <select id="getList" resultType="cn.footballtime.api.model.ConfigInfo">
-        select ConfigKey,ConfigValue from Config
+    <select id="getList" parameterType="String" resultType="cn.footballtime.api.model.ConfigInfo">
+        select ConfigKey,ConfigValue from Config WHERE Category=#{category}
     </select>
 </mapper>

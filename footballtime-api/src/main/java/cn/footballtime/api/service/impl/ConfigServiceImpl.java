@@ -21,8 +21,8 @@ public class ConfigServiceImpl implements ConfigService {
         return configRepository.getValueByKey(key);
     }
 
-    public List<ConfigInfo> getList()
+    public List<ConfigInfo> getList(String category)
     {
-        return configRepository.getList();
+        return configRepository.getList(category);
     }
 }

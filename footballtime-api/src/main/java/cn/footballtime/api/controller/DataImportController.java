@@ -34,7 +34,7 @@ public class DataImportController {
     @ResponseBody
     public ResponseDto insertTeam(String jsonMsg,String securityKey)
     {
-        String realSecurityKey = AppSetting.getConfigDict().get("footballdaySecurityKey");
+        String realSecurityKey = AppSetting.getApiSecurityKey();
         if(!realSecurityKey.equals(securityKey))
         {
             return new ResponseDto();
@@ -79,7 +79,7 @@ public class DataImportController {
     @ResponseBody
     public ResponseDto insertLeague(String jsonMsg,String securityKey)
     {
-        String realSecurityKey = AppSetting.getConfigDict().get("footballdaySecurityKey");
+        String realSecurityKey = AppSetting.getApiSecurityKey();
         if(!realSecurityKey.equals(securityKey))
         {
             return new ResponseDto();

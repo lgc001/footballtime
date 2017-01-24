@@ -39,7 +39,7 @@ public class LoginController {
         Cookie cookie = new Cookie(AppSetting.getCookieName(), AESUtil.encrypt("lgchao^"+guid,AppSetting.getCookieAesEncryptKey()));// 创建一个cookie，cookie的名字是footballday_cookie
         cookie.setPath("/");
         //cookie.setSecure(true);
-        cookie.setDomain(AppSetting.getCookieDomain());//footballtime.cn
+        cookie.setDomain(AppSetting.getCookieDomain());
         // 将cookie对象添加到response对象中，这样服务器在输出response对象中的内容时就会把cookie也输出到客户端浏览器
         response.addCookie(cookie);
 

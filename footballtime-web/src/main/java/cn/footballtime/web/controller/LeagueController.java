@@ -49,8 +49,6 @@ public class LeagueController {
         List<LeagueDto> futureLeagueList = leagueService.getLeagueListByCompetitionId(obj.getId(),false,1,10);
         model.addAttribute("futureLeagueList", futureLeagueList);
 
-        model.addAttribute("picUrl", AppSetting.getPicUrl());
-
         return "league/index";
     }
     /**

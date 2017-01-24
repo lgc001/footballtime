@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ConfigService {
     String getValueByKey(String key);
-    List<ConfigInfo> getList();
+    List<ConfigInfo> getList(String category);
 }

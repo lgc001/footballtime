@@ -11,9 +11,7 @@
     <div id="team-list" class="col-md-12">
         <#list teamList as team>
         <a href="/team/${team.teamNo}">
-            <#if team.picName?length != 0>
-            <img title="${team.fullName}" src="${picUrl}${team.picNo[0..5]}/${team.picName}" height="50" width="50">
-            </#if>
+            <img title="${team.fullName}" src="${team.getPicPath()}" height="50" width="50">
             <div title="${team.fullName}"><span><nobr>${team.fullName}</nobr></span></div>
         </a>
         </#list>

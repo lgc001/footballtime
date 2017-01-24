@@ -1,5 +1,6 @@
 package cn.footballtime.api.controller;
 
+import cn.footballtime.api.config.AppSetting;
 import cn.footballtime.api.model.Competition;
 import cn.footballtime.api.service.CompetitionService;
 import cn.footballtime.dto.CompetitionDto;

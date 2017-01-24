@@ -1,11 +1,12 @@
 package cn.footballtime.dto;
 
+import cn.footballtime.dto.common.BasePicDto;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class TeamDto {
+public class TeamDto extends BasePicDto {
 	private String teamNo;
 	private String name;
 	private String fullName;
@@ -15,13 +16,6 @@ public class TeamDto {
 	private String picPath;
 	public String getPicPath()
 	{
-		if(getPicNo().length()==18)
-		{
-			return getPicNo().substring(0,6) + "/" + getPicNo()+getPicNo().substring(17).replace("1",".jpg").replace("2",".png").replace("3",".gif");
-		}
-		else
-		{
-			return "";
-		}
+		return getPicPath(getPicNo());
 	}
 }
