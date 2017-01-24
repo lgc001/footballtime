@@ -12,12 +12,12 @@ public class TeamDto {
 	private String competitionId;
 	private Boolean isClub;
 	private String picNo;
-	private String picName;
-	public String getPicName()
+	private String picPath;
+	public String getPicPath()
 	{
 		if(getPicNo().length()==18)
 		{
-			return getPicNo()+getPicNo().substring(17).replace("1",".jpg").replace("2",".png").replace("3",".gif");
+			return getPicNo().substring(0,6) + "/" + getPicNo()+getPicNo().substring(17).replace("1",".jpg").replace("2",".png").replace("3",".gif");
 		}
 		else
 		{
