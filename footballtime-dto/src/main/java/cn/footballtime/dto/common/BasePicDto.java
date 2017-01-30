@@ -8,7 +8,7 @@ public class BasePicDto {
     {
         if(picNo != null && picNo.length()==18)
         {
-            return "http://img.footballtime.cn/" + picNo.substring(0,6) + "/" + picNo+picNo.substring(17).replace("1",".jpg").replace("2",".png").replace("3",".gif");
+            return "http://img.footballtime.cn/pic/" + picNo.substring(0,6) + "/" + picNo+picNo.substring(17).replace("1",".jpg").replace("2",".png").replace("3",".gif");
         }
         else
         {
