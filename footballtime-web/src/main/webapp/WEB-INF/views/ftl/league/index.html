@@ -24,6 +24,7 @@
             <thead>
             <tr>
                 <th>时间</th>
+                <th>轮次</th>
                 <th>主队</th>
                 <th>比分</th>
                 <th>客队</th>
@@ -33,6 +34,7 @@
             <#list overLeagueList as league>
                 <tr>
                     <td>${league.bjTime}</td>
+                    <td>${league.round}</td>
                     <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
                     <td>${league.fullScore}</td>
                     <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
@@ -45,6 +47,7 @@
             <thead>
             <tr>
                 <th>时间</th>
+                <th>轮次</th>
                 <th>主队</th>
                 <th>客队</th>
                 <th></th>
@@ -53,10 +56,11 @@
             <tbody>
             <#list futureLeagueList as league>
                 <tr>
-                    <td>${league.bjTime}（周六）</td>
+                    <td>${league.bjTime}</td>
+                    <td>${league.round}</td>
                     <td><a href="/team/${league.homeTeamNo}">${league.homeTeamName}</a></td>
                     <td><a href="/team/${league.guestTeamNo}">${league.guestTeamName}</a></td>
-                    <td>最近交锋</td>
+                    <td></td>
                 </tr>
             </#list>
             </tbody>
